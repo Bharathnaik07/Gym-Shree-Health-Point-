@@ -1,165 +1,118 @@
-# 🏋️‍♂️ Shree Health Point — Modern React Web Application
+# 🏋️‍♂️ Shree Health Point — React Fitness App
 
-[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](LICENSE)
 
-A high-performance, responsive single-page web application engineered for **Shree Health Point (Co-ed Gym)** located in Sirsi, Karnataka. Re-architected with **React 18**, **Vite**, and **Tailwind CSS**, featuring dark cyberpunk/neon aesthetics, glassmorphic UI components, and real-time state-driven interactivity.
-
----
-
-## 🌟 Key Features & React Engineering Highlights
-
-This project was built to demonstrate modern React best practices, component modularity, clean code structure, and UX performance:
-
-### ⚡ 1. Interactive BMI & Caloric Requirement Engine (`BMICalculator.jsx`)
-- **Dual-Unit Converter:** Instant switching between **Metric** (kg / cm) and **Imperial** (lbs / inches) with dynamic synchronized sliders and inputs.
-- **Dynamic Visual Gauge:** Calculates BMI in real time using `useMemo` and repositions a visual indicator across Underweight, Normal, Overweight, and Obese brackets.
-- **Smart Recommendations:** Calculates ideal target weight range, daily hydration volume (liters/day), and goal-adjusted maintenance calories (Fat Loss, Maintain, Muscle Gain).
-
-### 📅 2. Dynamic Class Schedule & Slot Filter (`ClassSchedule.jsx`)
-- Filter classes by **Day of the Week** (Monday – Saturday) and **Training Category** (CrossFit, Strength, Endurance, Wellness, Cardio).
-- Real-time slot availability indicators with direct reservation hooks connecting to the booking modal.
-
-### 💳 3. Multi-Tier Membership Selector (`Pricing.jsx`)
-- Interactive billing duration switcher (**Monthly Flex**, **Pro Quarterly**, and **Elite Annual**) with live savings calculation badges.
-- Detailed feature checklists distinguishing included privileges from premium tiers.
-- Integrated modal trigger passing the pre-selected package directly to registration.
-
-### 🖼️ 4. Accessible Fullscreen Lightbox Gallery (`Gallery.jsx`)
-- Interactive category filtering (Facilities, Weights, Cardio, Community).
-- Fullscreen Lightbox modal with **keyboard navigation support** (`ArrowLeft`, `ArrowRight`, `Escape`) and responsive touch-friendly navigation.
-
-### ⭐ 5. Live Community Reviews & Testimonial Creator (`Testimonials.jsx`)
-- Displays verified Google reviews with star rating metrics.
-- **Interactive Review Submission Form:** Members can submit their name, star rating, workout focus tag, and feedback, updating application state instantly with feedback toasts.
-
-### 🔍 6. Real-Time FAQ Search Engine (`FAQ.jsx`)
-- Live query search that dynamically filters questions and answers as the user types.
-- Accessible animated accordion with smooth expanding/collapsing logic.
-
-### 📝 7. Booking & Free Trial Modal System (`BookingModal.jsx` & `Toast.jsx`)
-- Universal modal supporting Free Trial passes, Personal Training consultations, and Plan signups.
-- Controlled inputs, field validation, submission simulation, and global floating toast notifications.
+A modern, responsive single-page web application built for **Shree Health Point (Co-ed Gym)** located in **Sirsi, Karnataka**. 
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## 💡 About This Project
 
-- **Core Library:** [React 18](https://reactjs.org/) (Hooks: `useState`, `useEffect`, `useMemo`)
-- **Build Tool:** [Vite](https://vitejs.dev/) (Lightning-fast HMR and optimized production bundling)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Custom neon glow utilities, glassmorphism, responsive grid)
-- **Iconography:** [Lucide React](https://lucide.dev/) (Crisp, tree-shakable SVG icons)
-- **Deployment Ready:** Easily deployable to Vercel, Netlify, or GitHub Pages.
+I built this project to solve a real need: our local gym in Sirsi had a basic static HTML/CSS webpage that lacked interactivity. Prospective and existing gym members had to manually ask trainers about membership pricing, weekly classes, and personalized fitness goals.
+
+I rebuilt the entire platform using **React 18**, **Vite**, and **Tailwind CSS**, introducing interactive tools like a live **BMI & Calorie Target Engine**, dynamic **Class Schedule filters**, and an easy **Free Trial booking system**.
 
 ---
 
-## 📁 Project Structure
+## ✨ Features
+
+- **📊 Smart BMI & Calorie Tracker:**
+  - Real-time calculations with support for both **Metric** (kg/cm) and **Imperial** (lbs/inches) units.
+  - Interactive visual gauge indicating underweight, normal, overweight, and obese brackets.
+  - Provides personalized daily calorie targets (Fat Loss, Maintenance, Muscle Gain) based on Mifflin-St Jeor BMR math, plus recommended hydration intake.
+  - Uses a custom `useLocalStorage` hook to save previous calculations so users can review their progress on return visits.
+- **📅 Weekly Class Schedule:**
+  - Filter classes by day of the week (Monday to Saturday) and training style (CrossFit, Strength, Cardio, Wellness).
+  - Displays remaining slot availability and links directly to a reservation modal.
+- **💳 Transparent Pricing & Membership Switcher:**
+  - Toggle between Monthly, Quarterly, and Annual passes with dynamic discount calculation.
+- **🖼️ Photo Gallery with Keyboard Lightbox:**
+  - Categorized gym equipment showcase.
+  - Fullscreen lightbox supporting `Escape`, `ArrowLeft`, and `ArrowRight` keyboard controls.
+- **⭐ Community Reviews:**
+  - Displays Google reviews and includes an interactive modal allowing members to post new reviews with live state updates.
+- **📱 Responsive Neon Dark Theme:**
+  - Optimized for mobile, tablet, and desktop viewing with an accessible slide-out mobile menu.
+
+---
+
+## 🧠 Key Technical Decisions & Learnings
+
+1. **Separation of Concerns:** 
+   - Moved all math formulas (BMI, Mifflin-St Jeor TDEE, hydration formulas) out of UI components and into pure utility functions in [`src/utils/healthCalculators.js`](./src/utils/healthCalculators.js). This makes the code modular, easy to read, and unit-testable.
+2. **Custom Hook (`useLocalStorage`):**
+   - Built a reusable custom hook in [`src/hooks/useLocalStorage.js`](./src/hooks/useLocalStorage.js) to sync state with the browser's storage safely with fallback handling.
+3. **State Optimization with `useMemo`:**
+   - Memoized derived health metrics in `BMICalculator.jsx` to prevent unnecessary recalculations when unrelated UI state updates.
+4. **Lifecycle & Event Cleanup:**
+   - Attached keydown and scroll listeners inside `useEffect` with clean `removeEventListener` calls to prevent memory leaks on component unmounts.
+
+---
+
+## 📁 Directory Structure
 
 ```text
-Gym-Shree-Health-Point-/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── About.jsx             # Gym story, credentials & equipment overview
-│   │   ├── BMICalculator.jsx     # Dual-unit BMI, target calories & hydration tool
-│   │   ├── BookingModal.jsx      # Universal reservation & free trial modal
-│   │   ├── ClassSchedule.jsx     # Weekly timetable with category & day filters
-│   │   ├── Contact.jsx           # Controlled contact form, WhatsApp & map embed
-│   │   ├── FAQ.jsx               # Searchable accordion FAQ component
-│   │   ├── Footer.jsx            # Social links, quick navigation & newsletter
-│   │   ├── Gallery.jsx           # Filterable gallery & keyboard lightbox
-│   │   ├── Hero.jsx              # High-impact neon hero with live stats
-│   │   ├── Navbar.jsx            # Sticky glassmorphism navbar & mobile drawer
-│   │   ├── Pricing.jsx           # Membership tiers with billing cycle toggle
-│   │   ├── Services.jsx          # Workout programs with intensity & burn metrics
-│   │   ├── Testimonials.jsx      # Google reviews & live feedback submission
-│   │   ├── Toast.jsx             # Floating notification component
-│   │   └── Trainers.jsx          # Certified coach profiles & credentials
-│   ├── data/
-│   │   └── gymData.js            # Structured data models for services, plans & FAQs
-│   ├── App.jsx                   # Main orchestration component & state bridge
-│   ├── index.css                 # Tailwind directives & glow/glassmorphism utilities
-│   └── main.jsx                  # React DOM entry point
-├── index.html                    # HTML5 template with Google Fonts (Outfit & Poppins)
-├── package.json                  # Dependencies & scripts
-├── postcss.config.js             # PostCSS Tailwind config
-├── tailwind.config.js            # Custom color palette & theme extensions
-└── vite.config.js                # Vite build configuration
+src/
+├── components/          # Reusable UI components
+│   ├── About.jsx
+│   ├── BMICalculator.jsx
+│   ├── BookingModal.jsx
+│   ├── ClassSchedule.jsx
+│   ├── Contact.jsx
+│   ├── FAQ.jsx
+│   ├── Footer.jsx
+│   ├── Gallery.jsx
+│   ├── Hero.jsx
+│   ├── Navbar.jsx
+│   ├── Pricing.jsx
+│   ├── Services.jsx
+│   ├── Testimonials.jsx
+│   ├── Toast.jsx
+│   └── Trainers.jsx
+├── data/
+│   └── gymData.js       # Central data model for gym info, plans & schedules
+├── hooks/
+│   └── useLocalStorage.js # Custom hook for localStorage persistence
+├── utils/
+│   └── healthCalculators.js # Pure math & health calculation utilities
+├── App.jsx              # Main application layout & global modal state
+├── index.css            # Tailwind styles & custom glassmorphism utilities
+└── main.jsx             # React DOM entry point
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 How to Run Locally
 
-Follow these steps to run the project locally on your machine:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Bharathnaik07/Gym-Shree-Health-Point-.git
+   cd Gym-Shree-Health-Point-
+   ```
 
-### 1. Prerequisites
-Ensure you have **Node.js** (v18 or higher) installed:
-```bash
-node -v
-npm -v
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 2. Clone Repository
-```bash
-git clone https://github.com/Bharathnaik07/Gym-Shree-Health-Point-.git
-cd Gym-Shree-Health-Point-
-```
+3. **Start local development server:**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:3000` in your browser.
 
-### 3. Install Dependencies
-```bash
-npm install
-```
-
-### 4. Start Development Server
-```bash
-npm run dev
-```
-Open your browser and navigate to `http://localhost:3000` (or the port specified by Vite).
-
-### 5. Build for Production
-To create an optimized, minified production build:
-```bash
-npm run build
-```
-The output will be generated inside the `dist/` directory, ready for deployment.
-
-### 6. Preview Production Build
-```bash
-npm run preview
-```
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## 🌐 Deploying to Vercel / Netlify
+## 👨‍💻 Developer
 
-This project is zero-config ready for modern hosting platforms:
-
-### Option 1: Deploy on Vercel
-1. Push your code to GitHub.
-2. Sign in to [Vercel](https://vercel.com/) and click **"New Project"**.
-3. Import `Gym-Shree-Health-Point-`.
-4. Framework Preset will auto-detect as **Vite**.
-5. Click **Deploy**.
-
-### Option 2: Deploy on Netlify
-1. Connect your repository on [Netlify](https://www.netlify.com/).
-2. Build command: `npm run build`
-3. Publish directory: `dist`
-4. Click **Deploy Site**.
-
----
-
-## 👨‍💻 Author
-
-**Bharath Naik**
-- GitHub: [@Bharathnaik07](https://github.com/Bharathnaik07)
-- Repository: [Gym-Shree-Health-Point-](https://github.com/Bharathnaik07/Gym-Shree-Health-Point-)
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+**Bharath Naik**  
+- GitHub: [@Bharathnaik07](https://github.com/Bharathnaik07)  
+- Location: Sirsi, Karnataka  
