@@ -82,6 +82,9 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.title}
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop";
+                }}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
@@ -145,6 +148,9 @@ export default function Gallery() {
             <img
               src={filteredImages[activeImageIndex].image}
               alt={filteredImages[activeImageIndex].title}
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop";
+              }}
               className="max-h-[70vh] w-auto object-contain rounded-2xl shadow-2xl border border-white/10"
             />
             <div className="text-center mt-4 text-white max-w-xl">

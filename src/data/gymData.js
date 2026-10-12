@@ -208,14 +208,14 @@ export const galleryData = [
     id: 2,
     title: "Cardio & Stamina Lineup",
     category: "Cardio",
-    image: "https://images.unsplash.com/photo-1526506114620-1afdb4290fb4?q=80&w=1470&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1470&auto=format&fit=crop",
     caption: "Interactive touch-screen treadmills, cross-trainers, and air bikes."
   },
   {
     id: 3,
     title: "Functional Training & CrossFit Turf",
     category: "Facilities",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfe09ce18?q=80&w=1470&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1470&auto=format&fit=crop",
     caption: "Prowler sleds, wall ball targets, battle ropes, and pull-up rig."
   },
   {
